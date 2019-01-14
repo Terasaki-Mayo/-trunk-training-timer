@@ -7,7 +7,8 @@
 //
 
 import UIKit
-let trainingConfig = ["トレーニング時間", "休憩時間", "セット数"]
+let trainingConfig = ["トレーニング時間(秒)", "休憩時間(秒)", "セット数"]
+let defaultParams = [60, 30, 3]
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -30,10 +31,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         // セルに表示する値を設定する
         cell.textLabel!.text = trainingConfig[indexPath.row]
+        cell.detailTextLabel?.text = String(defaultParams[indexPath.row])
         return cell
     }
     
-
+    @IBAction func startButtonTapped(_ sender: Any) {
+        
+    }
+    
 
 
 }
