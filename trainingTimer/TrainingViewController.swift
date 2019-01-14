@@ -21,6 +21,9 @@ class TrainingViewController: UIViewController {
     var setCount: Int = 0
     var restTime: Int = 0
     var trainingTime: Int = 0
+    
+    var isTraining = true
+    
     var timer = Timer()
     
     override func viewDidLoad() {
@@ -35,14 +38,27 @@ class TrainingViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { (timer) in
-            if(self.trainingTime == 1) {
-                self.trainingTime = Int(self.defaultTrainingTime!)!
-                self.setCount -= 1
-                self.setCountLabel.text = String(self.setCount)
-            } else {
+            
+            if (self.isTraining && self.trainingTime > 1) {
                 self.trainingTime -= 1
+            } else if (self.isTraining && self.trainingTime == 1) {
+                self.trainingTime = Int(self.defaultTrainingTime!)!
+                self.isTraining = false
+            } else if (!self.isTraining && self.restTime > 1) {
+                self.restTime -= 1
+            } else {
+                self.restTime = Int(self.defaultRestTime!)!
+                self.isTraining = true
+                
+                if(self.setCount == 1) {
+                    self.setCount = Int(self.defaultCountNum!)!
+                } else {
+                    self.setCount -= 1
+                }
             }
             self.trainingTimeLabel.text = String(self.trainingTime)
+            self.restTimeLabel.text = String(self.restTime)
+            self.setCountLabel.text = String(self.setCount)
         })
     }
 
