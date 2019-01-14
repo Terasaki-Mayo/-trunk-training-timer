@@ -14,6 +14,7 @@
 		46D7141221EC46F900B4C1AB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46D7141021EC46F900B4C1AB /* LaunchScreen.storyboard */; };
 		46D7141D21EC46FA00B4C1AB /* trainingTimerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D7141C21EC46FA00B4C1AB /* trainingTimerTests.swift */; };
 		46D7142821EC46FA00B4C1AB /* trainingTimerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D7142721EC46FA00B4C1AB /* trainingTimerUITests.swift */; };
+		46D7143C21EC9D2E00B4C1AB /* TrainingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D7143B21EC9D2E00B4C1AB /* TrainingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		46D7142321EC46FA00B4C1AB /* trainingTimerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = trainingTimerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		46D7142721EC46FA00B4C1AB /* trainingTimerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = trainingTimerUITests.swift; sourceTree = "<group>"; };
 		46D7142921EC46FA00B4C1AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		46D7143B21EC9D2E00B4C1AB /* TrainingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				46D7140E21EC46F900B4C1AB /* Assets.xcassets */,
 				46D7141021EC46F900B4C1AB /* LaunchScreen.storyboard */,
 				46D7141321EC46F900B4C1AB /* Info.plist */,
+				46D7143B21EC9D2E00B4C1AB /* TrainingViewController.swift */,
 			);
 			path = trainingTimer;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46D7143C21EC9D2E00B4C1AB /* TrainingViewController.swift in Sources */,
 				46D7140A21EC46F900B4C1AB /* ViewController.swift in Sources */,
 				46D7140821EC46F900B4C1AB /* AppDelegate.swift in Sources */,
 			);

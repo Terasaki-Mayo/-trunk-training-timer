@@ -39,6 +39,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let trainingViewController = segue.destination as! TrainingViewController
+        trainingViewController.defaultTrainingTime = String(defaultParams[0])
+        trainingViewController.defaultRestTime = String(defaultParams[1])
+        trainingViewController.defaultCountNum = String(defaultParams[2])
+    }
+    
 
 
 }
