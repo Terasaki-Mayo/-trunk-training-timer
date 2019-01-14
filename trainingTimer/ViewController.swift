@@ -1,11 +1,3 @@
-//
-//  ViewController.swift
-//  trainingTimer
-//
-//  Created by 寺崎麻代 on 2019/01/14.
-//  Copyright © 2019年 寺崎麻代. All rights reserved.
-//
-
 import UIKit
 let trainingConfig = ["トレーニング時間(秒)", "休憩時間(秒)", "セット数"]
 let defaultParams = [60, 30, 3]
