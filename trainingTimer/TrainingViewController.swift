@@ -48,9 +48,9 @@ class TrainingViewController: UIViewController {
                     self.setCount -= 1
                 }
             }
-            self.trainingTimeLabel.text = String(self.trainingTime)
-            self.restTimeLabel.text = String(self.restTime)
-            self.setCountLabel.text = String(self.setCount)
+            self.trainingTimeLabel.text = "残り" + String(self.trainingTime) + "秒"
+            self.restTimeLabel.text = "残り" +  String(self.restTime) + "秒"
+            self.setCountLabel.text = "残り" + String(self.setCount) + "セット"
         })
     }
 
