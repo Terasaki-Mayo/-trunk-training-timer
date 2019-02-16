@@ -5,7 +5,8 @@ let defaultParams = [60, 30, 3]
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource {
     
     var pickerView: UIPickerView = UIPickerView()
-    let array = ([Int])(30...120)
+    let countTimeArray = ([Int])(30...120)
+    let setNumArray = ([Int])(1...5)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +33,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath as IndexPath, animated: true)
+        pickerView.tag = indexPath.row
         showPicker()
     }
     
@@ -48,10 +50,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return 1
     }
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return array.count
+        
+        if pickerView.tag < 2 {
+            return countTimeArray.count
+        } else {
+            return setNumArray.count
+        }
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return String(array[row])
+        if pickerView.tag < 2 {
+            return String(countTimeArray[row])
+        } else {
+            return String(setNumArray[row])
+        }
     }
     func pickerView(pickerView: UIPickerView, didSelect numbers: [Int]) {
         print(numbers)
