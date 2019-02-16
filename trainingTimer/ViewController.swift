@@ -7,10 +7,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var pickerView: UIPickerView = UIPickerView()
     let countTimeArray = ([Int])(30...120)
     let setNumArray = ([Int])(1...5)
+    let toolBar = UIToolbar()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,12 +39,27 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func showPicker() {
+        //ピッカービューの設定
         pickerView.dataSource = self
         pickerView.delegate = self
         view.addSubview(pickerView)
         pickerView.translatesAutoresizingMaskIntoConstraints = false
-        pickerView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -20).isActive = true
-        pickerView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        pickerView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        pickerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        pickerView.heightAnchor.constraint(equalToConstant: view.frame.size.height * 0.25).isActive = true
+        
+        //ツールバーの設定
+        let doneBtn = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.doneTapped))
+        toolBar.items = [doneBtn]
+        toolBar.isUserInteractionEnabled = true
+        toolBar.barStyle = UIBarStyle.default
+        toolBar.isTranslucent = false
+        view.addSubview(toolBar)
+        toolBar.translatesAutoresizingMaskIntoConstraints = false
+        toolBar.bottomAnchor.constraint(equalTo: pickerView.topAnchor).isActive = true
+    }
+    
+    @objc func doneTapped() {
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
