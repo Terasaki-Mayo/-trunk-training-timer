@@ -2,8 +2,9 @@ import UIKit
 let trainingConfig = ["トレーニング時間(秒)", "休憩時間(秒)", "セット数"]
 let defaultParams = [60, 30, 3]
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, PopUpPickerViewDelegate {
-    var pickerView: PopUpPickerView!
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    var pickerView: UIPickerView = UIPickerView()
     let array = ["test1", "test2", "test3", "test4", "test5"]
 
     override func viewDidLoad() {
@@ -35,16 +36,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func showPicker() {
-        pickerView.showPicker()
+        pickerView.dataSource = self
+        pickerView.delegate = self
+        view.addSubview(pickerView)
     }
     // for delegate
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 3
     }
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return array.count
     }
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return array[row]
     }
     func pickerView(pickerView: UIPickerView, didSelect numbers: [Int]) {
