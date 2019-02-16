@@ -1,9 +1,10 @@
 import UIKit
 let trainingConfig = ["トレーニング時間(秒)", "休憩時間(秒)", "セット数"]
-let defaultParams = [60, 30, 3]
+var defaultParams = [60, 30, 3]
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource {
     
+    @IBOutlet weak var tableView: UITableView!
     var pickerView: UIPickerView = UIPickerView()
     let countTimeArray = ([Int])(30...120)
     let setNumArray = ([Int])(1...5)
@@ -60,6 +61,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     @objc func doneTapped() {
+        let rowNum = pickerView.selectedRow(inComponent: 0)
+        if pickerView.tag == 0 {
+            
+            defaultParams[0] = rowNum + 30
+        } else if pickerView.tag == 1 {
+            defaultParams[1] = rowNum + 30
+        } else {
+            defaultParams[2] = rowNum
+        }
+        tableView.reloadData()
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
