@@ -1,11 +1,3 @@
-//
-//  AppDelegate.swift
-//  trainingTimer
-//
-//  Created by 寺崎麻代 on 2019/01/14.
-//  Copyright © 2019年 寺崎麻代. All rights reserved.
-//
-
 import UIKit
 
 @UIApplicationMain
