@@ -5,7 +5,7 @@ let defaultParams = [60, 30, 3]
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource {
     
     var pickerView: UIPickerView = UIPickerView()
-    let array = ["test1", "test2", "test3", "test4", "test5"]
+    let array = ([Int])(30...120)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,16 +39,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         pickerView.dataSource = self
         pickerView.delegate = self
         view.addSubview(pickerView)
+        pickerView.translatesAutoresizingMaskIntoConstraints = false
+        pickerView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -20).isActive = true
+        pickerView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
     }
-    // for delegate
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 3
+        return 1
     }
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return array.count
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return array[row]
+        return String(array[row])
     }
     func pickerView(pickerView: UIPickerView, didSelect numbers: [Int]) {
         print(numbers)
