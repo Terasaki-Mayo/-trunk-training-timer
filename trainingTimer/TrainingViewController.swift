@@ -19,11 +19,7 @@ class TrainingViewController: UIViewController {
     var timer = Timer()
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        setCountLabel.text = defaultCountNum
-        restTimeLabel.text = defaultRestTime
-        trainingTimeLabel.text = defaultTrainingTime
-        
+        super.viewDidLoad()        
         setCount = Int(defaultCountNum!)!
         restTime = Int(defaultRestTime!)!
         trainingTime = Int(defaultTrainingTime!)!

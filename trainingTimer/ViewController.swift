@@ -2,8 +2,10 @@ import UIKit
 let trainingConfig = ["トレーニング時間(秒)", "休憩時間(秒)", "セット数"]
 let defaultParams = [60, 30, 3]
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, PopUpPickerViewDelegate {
+    var pickerView: PopUpPickerView!
+    let array = ["test1", "test2", "test3", "test4", "test5"]
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -25,6 +27,28 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell.textLabel!.text = trainingConfig[indexPath.row]
         cell.detailTextLabel?.text = String(defaultParams[indexPath.row])
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath as IndexPath, animated: true)
+        showPicker()
+    }
+    
+    func showPicker() {
+        pickerView.showPicker()
+    }
+    // for delegate
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 3
+    }
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return array.count
+    }
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+        return array[row]
+    }
+    func pickerView(pickerView: UIPickerView, didSelect numbers: [Int]) {
+        print(numbers)
     }
     
     @IBAction func startButtonTapped(_ sender: Any) {
