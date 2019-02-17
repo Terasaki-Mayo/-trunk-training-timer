@@ -63,7 +63,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @objc func doneTapped() {
         let rowNum = pickerView.selectedRow(inComponent: 0)
         if pickerView.tag == 0 {
-            
             defaultParams[0] = rowNum + 30
         } else if pickerView.tag == 1 {
             defaultParams[1] = rowNum + 30

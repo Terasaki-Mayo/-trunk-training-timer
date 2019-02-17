@@ -1,5 +1,6 @@
 import UIKit
-
+import Firebase
+import FirebaseDatabase
 class TrainingViewController: UIViewController {
 
     @IBOutlet weak var setCountLabel: UILabel!
@@ -17,8 +18,13 @@ class TrainingViewController: UIViewController {
     
     var timer = Timer()
     
+    var ref: DatabaseReference!
+    
+    
     override func viewDidLoad() {
-        super.viewDidLoad()        
+        super.viewDidLoad()
+        ref = Database.database().reference()
+        
         setCount = Int(defaultCountNum!)!
         reminingTime = Int(defaultTrainingTime!)!
         // Do any additional setup after loading the view.
@@ -48,9 +54,16 @@ class TrainingViewController: UIViewController {
             if(self.setCount == 0) {
                 self.timeLabel.text = "おつかれ様でした〜〜"
                 self.statusLabel.text = "終わり！！"
+                self.storeDatas()
                 timer.invalidate()
             }
         })
+    }
+    
+    func storeDatas(){
+        let formatter = DateFormatter()
+        formatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "ydMMM", options: 0, locale: Locale(identifier: "ja_JP"))
+        self.ref.child("traningLog").child("terasaki").child(formatter.string(from: Date())).setValue(["setCount": defaultCountNum, "traningTime": defaultTrainingTime])
     }
 
     override func didReceiveMemoryWarning() {
