@@ -3,16 +3,15 @@ import UIKit
 class TrainingViewController: UIViewController {
 
     @IBOutlet weak var setCountLabel: UILabel!
-    @IBOutlet weak var restTimeLabel: UILabel!
-    @IBOutlet weak var trainingTimeLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var statusLabel: UILabel!
     
     var defaultTrainingTime: String?
     var defaultRestTime: String?
     var defaultCountNum: String?
     
     var setCount: Int = 0
-    var restTime: Int = 0
-    var trainingTime: Int = 0
+    var reminingTime: Int = 0
     
     var isTraining = true
     
@@ -21,32 +20,35 @@ class TrainingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()        
         setCount = Int(defaultCountNum!)!
-        restTime = Int(defaultRestTime!)!
-        trainingTime = Int(defaultTrainingTime!)!
+        reminingTime = Int(defaultTrainingTime!)!
         // Do any additional setup after loading the view.
         
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { (timer) in
             
-            if (self.isTraining && self.trainingTime > 1) {
-                self.trainingTime -= 1
-            } else if (self.isTraining && self.trainingTime == 1) {
-                self.trainingTime = Int(self.defaultTrainingTime!)!
-                self.isTraining = false
-            } else if (!self.isTraining && self.restTime > 1) {
-                self.restTime -= 1
+            
+            if (self.reminingTime >= 1) {
+                self.reminingTime -= 1
             } else {
-                self.restTime = Int(self.defaultRestTime!)!
-                self.isTraining = true
-                
-                if(self.setCount == 1) {
-                    self.setCount = Int(self.defaultCountNum!)!
+                if(self.isTraining) {
+                    self.reminingTime = Int(self.defaultRestTime!)!
+                    
+                    self.isTraining = false
+                    self.statusLabel.text = "休憩中"
                 } else {
+                    self.reminingTime = Int(self.defaultTrainingTime!)!
+                    self.isTraining = true
+                    self.statusLabel.text = "トレーニング中"
                     self.setCount -= 1
+                    
                 }
             }
-            self.trainingTimeLabel.text = "残り" + String(self.trainingTime) + "秒"
-            self.restTimeLabel.text = "残り" +  String(self.restTime) + "秒"
+            self.timeLabel.text = "残り" + String(self.reminingTime) + "秒"
             self.setCountLabel.text = "残り" + String(self.setCount) + "セット"
+            
+            if(self.setCount == 0) {
+                self.statusLabel.text = "終わり！！"
+                timer.invalidate()
+            }
         })
     }
 
