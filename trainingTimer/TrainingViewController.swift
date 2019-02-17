@@ -43,9 +43,10 @@ class TrainingViewController: UIViewController {
                 }
             }
             self.timeLabel.text = "残り" + String(self.reminingTime) + "秒"
-            self.setCountLabel.text = "残り" + String(self.setCount) + "セット"
+            self.setCountLabel.text = String(self.setCount) + "/" + self.defaultCountNum! + "セット"
             
             if(self.setCount == 0) {
+                self.timeLabel.text = "おつかれ様でした〜〜"
                 self.statusLabel.text = "終わり！！"
                 timer.invalidate()
             }
